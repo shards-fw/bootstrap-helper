@@ -1,0 +1,34 @@
+{
+  "name": "bootstrap-helper",
+  "version": "0.1.0",
+  "description": "SCSS tools to generate CSS variables",
+  "main": "scss/bootstrap.scss",
+  "scripts": {
+    "test:color": "sass -I node_modules test-color.scss",
+    "test:bootstrap": "sass -I node_modules test-bootstrap.scss"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shards-fw/bootstrap-helper.git"
+  },
+  "files": [
+    "scss"
+  ],
+  "keywords": [
+    "SCSS",
+    "shards",
+    "bootstrap"
+  ],
+  "author": "Gormartsen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/shards-fw/bootstrap-helper/issues"
+  },
+  "homepage": "https://github.com/shards-fw/bootstrap-helper#readme",
+  "dependencies": {
+    "bootstrap": "^5.2.1"
+  },
+  "devDependencies": {
+    "sass": "^1.55.0"
+  }
+}

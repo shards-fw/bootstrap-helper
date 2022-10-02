@@ -1,0 +1,17 @@
+// stylelint-disable function-name-case declaration-no-important annotation-no-unknown
+
+// All-caps `RGBA()` function used because of this Sass bug: https://github.com/sass/node-sass/issues/2251
+
+@mixin color-bg-variant($text-background-name, $value) {
+  $color-rgb: to-rgb($value);
+  $color: color-contrast($value) if($enable-important-utilities, !important, null);
+  $bg: rgba($color-rgb, var(--#{$prefix}bg-opacity, 1)) if($enable-important-utilities, !important, null);
+
+  --#{$text-background-name}-color: #{$color};
+  --#{$text-background-name}-bg: #{$bg};
+}
+
+@mixin color-bg-set-variables($text-background-name) {
+  color: var(--#{$text-background-name}-color) if($enable-important-utilities, !important, null);
+  background-color: var(--#{$text-background-name}-bg) if($enable-important-utilities, !important, null);
+}

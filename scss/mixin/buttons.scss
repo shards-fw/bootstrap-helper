@@ -1,0 +1,95 @@
+@mixin button-variant(
+  $prefix,
+  $background,
+  $border,
+  $color: color-contrast($background),
+  $hover-background: if($color == $color-contrast-light, shade-color($background, $btn-hover-bg-shade-amount), tint-color($background, $btn-hover-bg-tint-amount)),
+  $hover-border: if($color == $color-contrast-light, shade-color($border, $btn-hover-border-shade-amount), tint-color($border, $btn-hover-border-tint-amount)),
+  $hover-color: color-contrast($hover-background),
+  $active-background: if($color == $color-contrast-light, shade-color($background, $btn-active-bg-shade-amount), tint-color($background, $btn-active-bg-tint-amount)),
+  $active-border: if($color == $color-contrast-light, shade-color($border, $btn-active-border-shade-amount), tint-color($border, $btn-active-border-tint-amount)),
+  $active-color: color-contrast($active-background),
+  $disabled-background: $background,
+  $disabled-border: $border,
+  $disabled-color: color-contrast($disabled-background)
+) {
+  --#{$prefix}-color: #{$color};
+  --#{$prefix}-bg: #{$background};
+  --#{$prefix}-border-color: #{$border};
+  --#{$prefix}-hover-color: #{$hover-color};
+  --#{$prefix}-hover-bg: #{$hover-background};
+  --#{$prefix}-hover-border-color: #{$hover-border};
+  --#{$prefix}-focus-shadow-rgb: #{to-rgb(mix($color, $border, 15%))};
+  --#{$prefix}-active-color: #{$active-color};
+  --#{$prefix}-active-bg: #{$active-background};
+  --#{$prefix}-active-border-color: #{$active-border};
+  --#{$prefix}-active-shadow: #{$btn-active-box-shadow};
+  --#{$prefix}-disabled-color: #{$disabled-color};
+  --#{$prefix}-disabled-bg: #{$disabled-background};
+  --#{$prefix}-disabled-border-color: #{$disabled-border};
+}
+
+@mixin button-outline-variant(
+  $prefix,
+  $color,
+  $color-hover: color-contrast($color),
+  $active-background: $color,
+  $active-border: $color,
+  $active-color: color-contrast($active-background)
+) {
+  --#{$prefix}-color: #{$color};
+  --#{$prefix}-border-color: #{$color};
+  --#{$prefix}-hover-color: #{$color-hover};
+  --#{$prefix}-hover-bg: #{$active-background};
+  --#{$prefix}-hover-border-color: #{$active-border};
+  --#{$prefix}-focus-shadow-rgb: #{to-rgb($color)};
+  --#{$prefix}-active-color: #{$active-color};
+  --#{$prefix}-active-bg: #{$active-background};
+  --#{$prefix}-active-border-color: #{$active-border};
+  --#{$prefix}-active-shadow: #{$btn-active-box-shadow};
+  --#{$prefix}-disabled-color: #{$color};
+  --#{$prefix}-disabled-bg: transparent;
+  --#{$prefix}-disabled-border-color: #{$color};
+  --#{$prefix}gradient: none;
+}
+
+@mixin button-variant-set-variables(
+  $btn-name,
+) {
+  --#{$prefix}btn-color: var(--#{$btn-name}-color);
+  --#{$prefix}btn-bg: var(--#{$btn-name}-bg);
+  --#{$prefix}btn-border-color: var(--#{$btn-name}-border-color);
+  --#{$prefix}btn-hover-color: var(--#{$btn-name}-hover-color);
+  --#{$prefix}btn-hover-bg: var(--#{$btn-name}-hover-bg);
+  --#{$prefix}btn-hover-border-color: var(--#{$btn-name}-hover-border-color);
+  --#{$prefix}btn-focus-shadow-rgb: var(--#{$btn-name}-focus-shadow-rgb);
+  --#{$prefix}btn-active-color: var(--#{$btn-name}-active-color);
+  --#{$prefix}btn-active-bg: var(--#{$btn-name}-active-bg);
+  --#{$prefix}btn-active-border-color: var(--#{$btn-name}-active-border-color);
+  --#{$prefix}btn-active-shadow: var(--#{$btn-name}-active-shadow);
+  --#{$prefix}btn-disabled-color: var(--#{$btn-name}-disabled-color);
+  --#{$prefix}btn-disabled-bg: var(--#{$btn-name}-disabled-bg);
+  --#{$prefix}btn-disabled-border-color: var(--#{$btn-name}-disabled-border-color);
+}
+
+// scss-docs-end btn-variant-mixin
+
+// scss-docs-start btn-outline-variant-mixin
+@mixin button-outline-variant-set-variables(
+  $btn-name,
+) {
+  --#{$prefix}btn-color: var(--#{$btn-name}-color);
+  --#{$prefix}btn-border-color: var(--#{$btn-name}-border-color);
+  --#{$prefix}btn-hover-color: var(--#{$btn-name}-hover-color);
+  --#{$prefix}btn-hover-bg: var(--#{$btn-name}-hover-bg);
+  --#{$prefix}btn-hover-border-color: var(--#{$btn-name}-hover-border-color);
+  --#{$prefix}btn-focus-shadow-rgb: var(--#{$btn-name}-focus-shadow-rgb);
+  --#{$prefix}btn-active-color: var(--#{$btn-name}-active-color);
+  --#{$prefix}btn-active-bg: var(--#{$btn-name}-active-bg);
+  --#{$prefix}btn-active-border-color: var(--#{$btn-name}-active-border-color);
+  --#{$prefix}btn-active-shadow: var(--#{$btn-name}-active-shadow);
+  --#{$prefix}btn-disabled-color: var(--#{$btn-name}-disabled-color);
+  --#{$prefix}btn-disabled-bg: transparent;
+  --#{$prefix}btn-disabled-border-color: var(--#{$btn-name}-disabled-border-color);
+  --#{$prefix}gradient: none;
+}

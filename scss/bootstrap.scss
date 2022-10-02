@@ -1,0 +1,12 @@
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/maps";
+@import "bootstrap/scss/mixins";
+@import "./mixins";
+
+// Overrite default classes to set variables
+@import "./buttons";
+@import "./list-group";
+@import "./alert";
+@import "./helpers/color-bg";
+@import "./helpers/colored-links";

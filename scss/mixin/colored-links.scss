@@ -1,0 +1,22 @@
+@mixin colored-links-variant($link-color-name, $value) {
+  $color: $value;
+
+  --#{$link-color-name}-color: #{$color};
+
+  @if $link-shade-percentage != 0 {
+    $color-active: if(color-contrast($value) == $color-contrast-light, shade-color($value, $link-shade-percentage), tint-color($value, $link-shade-percentage));
+
+    --#{$link-color-name}-active-color: #{$color-active};
+  }
+}
+
+@mixin colored-links-set-variables($link-color-name) {
+  color: var(--#{$link-color-name}-color) if($enable-important-utilities, !important, null); // stylelint-disable-line declaration-no-important
+
+  &:hover,
+  &:focus {
+    @if $link-shade-percentage != 0 {
+      color: var(--#{$link-color-name}-active-color) if($enable-important-utilities, !important, null); // stylelint-disable-line declaration-no-important
+    }
+  }
+}

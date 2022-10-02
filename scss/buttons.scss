@@ -1,0 +1,22 @@
+// scss-docs-start btn-variant-loops
+@each $color, $value in $theme-colors {
+  .btn-#{$color} {
+    @if $color == "light" {
+      @include button-variant-set-variables(
+        "btn-#{$color}"
+      );
+    } @else if $color == "dark" {
+      @include button-variant-set-variables(
+        "btn-#{$color}"
+      );
+    } @else {
+      @include button-variant-set-variables("btn-#{$color}");
+    }
+  }
+}
+
+@each $color, $value in $theme-colors {
+  .btn-outline-#{$color} {
+    @include button-outline-variant-set-variables("btn-outline-#{$color}");
+  }
+}

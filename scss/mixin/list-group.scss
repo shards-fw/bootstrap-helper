@@ -1,0 +1,35 @@
+// List Groups
+
+// scss-docs-start list-group-mixin
+@mixin list-group-item-variant-set-variables($state, $background, $color) {
+  .list-group-item-#{$state} {
+    color: var(--list-group-#{$state}-color);
+    background-color: var(--list-group-#{$state}-bg);
+
+    &.list-group-item-action {
+      &:hover,
+      &:focus {
+        color: var(--list-group-#{$state}-hover-color);
+        background-color: var(--list-group-#{$state}-hover-bg);
+      }
+
+      &.active {
+        color: var(--list-group-#{$state}-active-color);
+        background-color: var(--list-group-#{$state}-active-bg);
+        border-color: var(--list-group-#{$state}-active-border-color);
+      }
+    }
+  }
+}
+
+// scss-docs-end list-group-mixin
+
+@mixin list-group-item-variant-root($state, $background, $color) {
+  --list-group-#{$state}-color: #{$color};
+  --list-group-#{$state}-bg: #{$background};
+  --list-group-#{$state}-hover-color: #{$color};
+  --list-group-#{$state}-hover-bg: #{shade-color($background, 10%)};
+  --list-group-#{$state}-active-color: $white;
+  --list-group-#{$state}-active-bg: #{$color};
+  --list-group-#{$state}-active-border-color: #{$color};
+}

@@ -1,0 +1,118 @@
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/maps";
+@import "bootstrap/scss/mixins";
+@import "./mixins";
+
+$theme-colors: (
+  "primary":    $primary,
+  "secondary":  $secondary,
+  "success":    $success,
+  "info":       $info,
+  "warning":    $warning,
+  "danger":     $danger,
+  "light":      $light,
+  "dark":       $dark
+);
+
+$table-variants: (
+  "primary":    shift-color($primary, $table-bg-scale),
+  "secondary":  shift-color($secondary, $table-bg-scale),
+  "success":    shift-color($success, $table-bg-scale),
+  "info":       shift-color($info, $table-bg-scale),
+  "warning":    shift-color($warning, $table-bg-scale),
+  "danger":     shift-color($danger, $table-bg-scale),
+  "light":      $light,
+  "dark":       $dark,
+);
+
+// Set theme colors
+:root {
+
+  @import "./root";
+  @include root-colors();
+
+  // Buttons
+  @each $color, $value in $theme-colors {
+    @include button-outline-variant("btn-outline-#{$color}", $value);
+
+    @if $color == "light" {
+      @include button-variant(
+        "btn-#{$color}",
+        $value,
+        $value,
+        $hover-background: shade-color($value, $btn-hover-bg-shade-amount),
+        $hover-border: shade-color($value, $btn-hover-border-shade-amount),
+        $active-background: shade-color($value, $btn-active-bg-shade-amount),
+        $active-border: shade-color($value, $btn-active-border-shade-amount)
+      );
+    } @else if $color == "dark" {
+      @include button-variant(
+        "btn-#{$color}",
+        $value,
+        $value,
+        $hover-background: tint-color($value, $btn-hover-bg-tint-amount),
+        $hover-border: tint-color($value, $btn-hover-border-tint-amount),
+        $active-background: tint-color($value, $btn-active-bg-tint-amount),
+        $active-border: tint-color($value, $btn-active-border-tint-amount)
+      );
+    } @else {
+      @include button-variant("btn-#{$color}", $value, $value);
+    }
+  }
+
+  //list group
+  @each $state, $value in $theme-colors {
+    $list-group-variant-bg: shift-color($value, $list-group-item-bg-scale);
+    $list-group-variant-color: shift-color($value, $list-group-item-color-scale);
+
+    @if contrast-ratio($list-group-variant-bg, $list-group-variant-color) < $min-contrast-ratio {
+      $list-group-variant-color: mix($value, color-contrast($list-group-variant-bg), abs($list-group-item-color-scale));
+    }
+
+    @include list-group-item-variant-root($state, $list-group-variant-bg, $list-group-variant-color);
+  }
+
+  //Alert
+  @each $state, $value in $theme-colors {
+    $alert-background: shift-color($value, $alert-bg-scale);
+    $alert-border: shift-color($value, $alert-border-scale);
+    $alert-color: shift-color($value, $alert-color-scale);
+
+    @if contrast-ratio($alert-background, $alert-color) < $min-contrast-ratio {
+      $alert-color: mix($value, color-contrast($alert-background), abs($alert-color-scale));
+    }
+
+    @include alert-variant("alert-#{$state}",$alert-background, $alert-border, $alert-color);
+  }
+
+  // Color Bg
+  @each $color, $value in $theme-colors {
+    @include color-bg-variant("text-bg-#{$color}", $value);
+  }
+
+  // Colored links
+  @each $color, $value in $theme-colors {
+    @include colored-links-variant("link-#{$color}", $value);
+  }
+
+  //Modals
+  @import "./modal";
+  @include modal-colors();
+
+  //Offcanvas
+  $offcanvas-padding-y:               $modal-inner-padding ;
+  $offcanvas-padding-x:               $modal-inner-padding ;
+  $offcanvas-border-color:            $modal-content-border-color ;
+  $offcanvas-border-width:            $modal-content-border-width ;
+  $offcanvas-title-line-height:       $modal-title-line-height ;
+  $offcanvas-bg-color:                $modal-content-bg ;
+  $offcanvas-color:                   $modal-content-color ;
+  $offcanvas-box-shadow:              $modal-content-box-shadow-xs ;
+  $offcanvas-backdrop-bg:             $modal-backdrop-bg ;
+  $offcanvas-backdrop-opacity:        $modal-backdrop-opacity ;
+  @import "./offcanvas";
+  @include offcanvas-colors();
+  // Card
+  @import "./card";
+  @include card-colors();
+}

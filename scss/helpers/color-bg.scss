@@ -1,0 +1,6 @@
+@each $color, $value in $theme-colors {
+  $color-rgb: to-rgb($value);
+  .text-bg-#{$color} {
+    @include color-bg-set-variables("text-bg-#{$color}");
+  }
+}
